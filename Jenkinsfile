@@ -40,12 +40,14 @@ pipeline {
         
         stage('Docker deploy'){
             steps {
-            	 def imageExists = bat(script: "docker images -q api-demo", returnStdout: true) == 0
-    			if(imageExists){
+             	when {
+                	expression { (bat "docker images -q api-demo", returnStdout: true") == 0 }
+            	}
+            	steps {
         			   	bat 'docker stop api-demo'
                			bat 'docker rm api-demo'	
-    			}
-                bat 'docker run --name api-demo -itd -p  8085:8085 sanjay872/docker_jenkins_springboot:%BUILD_NUMBER%'
+            	}
+              bat 'docker run --name api-demo -itd -p  8085:8085 sanjay872/docker_jenkins_springboot:%BUILD_NUMBER%'
             }
         }
 
