@@ -41,7 +41,8 @@ pipeline {
         stage('Docker deploy'){
             steps {
             	script{
-            		if(bat(script: "docker images -q api-demo", returnStdout: true) > 0){
+            		imageExists = bat(script: "docker images -q <image name>", returnStdout: true) == 0
+            		if(imageExists){
             			bat 'docker stop api-demo'
             			bat 'docker rm api-demo'
             			bat 'docker rmi sanjay872/docker_jenkins_springboot'
