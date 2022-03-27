@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker image'){
             steps {
               
-                bat 'docker build -t  sanjay872/docker_jenkins_springboot:%BUILD_NUMBER% .'
+                bat 'docker build --name api-demo -t  sanjay872/docker_jenkins_springboot:%BUILD_NUMBER% .'
             }
         }
 
@@ -40,16 +40,17 @@ pipeline {
         
         stage('Docker deploy'){
             steps {
-               
+            	bat 'docker stop api-demo'
+               	bat 'docker rm api-demo'
                 bat 'docker run -itd -p  8085:8085 sanjay872/docker_jenkins_springboot:%BUILD_NUMBER%'
             }
         }
 
         
-        stage('Archving') { 
-            steps {
-                 archiveArtifacts '**/target/*.jar'
-            }
-        }
+//      	 stage('Archving') { 
+//           steps {
+//                 archiveArtifacts '**/target/*.jar'
+//            }
+//        }
     }
 }
