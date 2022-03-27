@@ -44,13 +44,19 @@ pipeline {
             }
             stages ('remove existing container and image') {
             	stage('stop the container'){
-            		bat 'docker stop api-demo'
+            		steps{
+            			bat 'docker stop api-demo'
+            		}
             	}
             	stage('remove container') {
-            		bat 'docker rm api-demo'
+            		steps{
+            			bat 'docker rm api-demo'
+            		}
             	}
             	stage('remove image') {
-               			bat 'docker rmi sanjay872/docker_jenkins_springboot'	
+               			steps{
+               				bat 'docker rmi sanjay872/docker_jenkins_springboot'
+               			}	
             	}
             }
             steps {
