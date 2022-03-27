@@ -11,7 +11,7 @@ pipeline {
 
         stage('deploy') { 
             steps {
-                sh "mvn package"
+                bat "mvn package"
             }
         }
 
@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker image'){
             steps {
               
-                sh 'docker build -t  sanjay872/docker_jenkins_springboot:${BUILD_NUMBER} .'
+                bat 'docker build -t  sanjay872/docker_jenkins_springboot:${BUILD_NUMBER} .'
             }
         }
 
@@ -27,21 +27,21 @@ pipeline {
             
             steps {
                  withCredentials([string(credentialsId: 'DockerId', variable: 'Dockerpwd')]) {
-                    sh "docker login -u sanjay872 -p ${Dockerpwd}"
+                    bat "docker login -u sanjay872 -p ${Dockerpwd}"
                 }
             }                
         }
 
         stage('Docker Push'){
             steps {
-                sh 'docker push sanjay872/docker_jenkins_springboot:${BUILD_NUMBER}'
+                bat 'docker push sanjay872/docker_jenkins_springboot:${BUILD_NUMBER}'
             }
         }
         
         stage('Docker deploy'){
             steps {
                
-                sh 'docker run -itd -p  8085:8085 sanjay872/docker_jenkins_springboot:${BUILD_NUMBER}'
+                bat 'docker run -itd -p  8085:8085 sanjay872/docker_jenkins_springboot:${BUILD_NUMBER}'
             }
         }
 
