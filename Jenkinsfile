@@ -41,7 +41,7 @@ pipeline {
         stage('Docker deploy'){
             steps {
              	when {
-                	expression { (bat "docker images -q api-demo", returnStdout: true") == 0 }
+                	expression { bat "docker images -q api-demo", returnStdout: true" == 0 }
             	}
             	steps {
         			   	bat 'docker stop api-demo'
