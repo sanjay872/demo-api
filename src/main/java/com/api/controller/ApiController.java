@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api")
 public class ApiController {
 
-	@GetMapping()
+	@GetMapping("/home")
 	public String welcome() {
-		return "hello welocome!!";
+		return "hello welcome!!";
 	}
 	
-	
+	@GetMapping("/bye")
+	public String bye() {
+		return "Bye!!";
+	}
 }
