@@ -39,28 +39,13 @@ pipeline {
         }
         
         stage('Docker deploy'){
-        	when {
-               	expression { bat(script: "docker images -q api-demo", returnStdout: true) > 0 }
-            }
-            stages ('remove existing container and image') {
-            	stage('stop the container'){
-            		steps{
-            			bat 'docker stop api-demo'
-            		}
-            	}
-            	stage('remove container') {
-            		steps{
-            			bat 'docker rm api-demo'
-            		}
-            	}
-            	stage('remove image') {
-               			steps{
-               				bat 'docker rmi sanjay872/docker_jenkins_springboot'
-               			}	
-            	}
-            }
             steps {
-              bat 'docker run --name api-demo -itd -p  8085:8085 sanjay872/docker_jenkins_springboot:%BUILD_NUMBER%'
+            	if(bat(script: "docker images -q api-demo", returnStdout: true) > 0){
+            		bat 'docker stop api-demo'
+            		bat 'docker rm api-demo'
+            		bat 'docker rmi sanjay872/docker_jenkins_springboot'
+            	}
+              	bat 'docker run --name api-demo -itd -p  8085:8085 sanjay872/docker_jenkins_springboot:%BUILD_NUMBER%'
             }
         }
 
