@@ -17,4 +17,9 @@ public class ApiController {
 	public String bye() {
 		return "Bye!!";
 	}
+	
+	@GetMapping("hey")
+	public String hey() {
+		return "Hey :)!!";
+	}
 }
