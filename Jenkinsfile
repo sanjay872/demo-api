@@ -50,10 +50,10 @@ pipeline {
         }
 
         
-//      	 stage('Archving') { 
-//           steps {
-//                 archiveArtifacts '**/target/*.jar'
-//            }
-//        }
+      	 stage('Archving') { 
+          steps {
+               archiveArtifacts '**/target/*.jar'
+           }
+        }
     }
 }
