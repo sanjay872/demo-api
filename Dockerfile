@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:8-jdk-alpine
 
 ADD target/demo-api-0.0.1-SNAPSHOT.jar demo-api.jar
 
