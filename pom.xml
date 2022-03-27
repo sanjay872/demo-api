@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ride</groupId>
-	<artifactId>api-jenkin</artifactId>
+	<artifactId>demo-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api-jenkin</name>
+	<name>demo-api</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
