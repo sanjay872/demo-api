@@ -55,8 +55,7 @@ pipeline {
             		}
             		finally {
             			bat 'docker run --name demo-api -itd -p  8085:8085 sanjay872/docker_jenkins_springboot:%BUILD_NUMBER%'
-            			bat 'docker image prune -a'
-            			bat 'y'
+            			bat 'docker image prune -a -f'
             		}
             	}
             }
