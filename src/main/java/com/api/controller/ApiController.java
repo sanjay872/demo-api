@@ -13,10 +13,10 @@ public class ApiController {
 		return "hello welcome!!";
 	}
 	
-	@GetMapping("/bye")
-	public String bye() {
-		return "Bye!!";
-	}
+//	@GetMapping("/bye")
+//	public String bye() {
+//		return "Bye!!";
+//	}
 	
 	@GetMapping("hey")
 	public String hey() {
