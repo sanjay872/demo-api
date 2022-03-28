@@ -18,8 +18,8 @@ public class ApiController {
 		return "Bye!!";
 	}
 	
-//	@GetMapping("hey")
-//	public String hey() {
-//		return "Hey :)!!";
-//	}
+	@GetMapping("hey")
+	public String hey() {
+		return "Hey :)!!";
+	}
 }
